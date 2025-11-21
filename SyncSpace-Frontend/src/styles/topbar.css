@@ -1,0 +1,104 @@
+.topbar-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 9px 3px 20px 2px #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.topbar-search-container {
+    position: relative;
+    width: 100%;
+    color: #6b7280;
+}
+
+.topbar-search-container input {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    padding-left: 50px;
+    border: 1px groove gray;
+    outline: none !important;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.topbar-search-container label {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1rem;
+    background-color: transparent;
+    top: 5px;
+    left: 5px;
+    padding: 0 5px;
+    z-index: 999;
+    transition: 0.3s ease-in;
+}
+
+.topbar-search-container:hover input,
+.topbar-search-container:focus-within input {
+    border: 1px groove #4f46e5 !important;
+    color: #4f46e5;
+    box-shadow: 5px 5px 8px 1px #e0e7ff;
+    transition: 0.3s ease-out;
+}
+
+.topbar-search-container:hover .topbar-icon,
+.topbar-search-container:focus-within .topbar-icon {
+    color: #4f46e5 !important;
+    transition: 0.3s ease-out;
+}
+
+.topbar-search-container:hover label,
+.topbar-search-container:focus-within label {
+    color: #4f46e5 !important;
+    transition: 0.3s ease-out;
+}
+
+.topbar-icon-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.topbar-icon {
+    padding: 0;
+    color: #6b7280;
+    background: transparent;
+    font-size: 1.8rem !important;
+    margin-right: 20px;
+    transition: 0.3s ease-out;
+}
+
+.topbar-icon:hover {
+    color: #4f46e5;
+    transition: 0.3s ease;
+}
+
+.menu-btn {
+    display: none !important;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    color: #4f46e5;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block !important;
+        padding: 0;
+        color: #6b7280;
+        background: transparent;
+        font-size: 1.8rem !important;
+        margin-right: 20px;
+        transition: 0.3s ease-out;
+    }
+}

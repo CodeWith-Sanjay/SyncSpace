@@ -4,7 +4,6 @@
     max-width: 550px;
     margin: 10px;
 
-    /* border: 1px solid black; */
     box-shadow: 1px 1px 20px 10px #e0e7ff;
     border-radius: 10px;
 }
@@ -20,7 +19,7 @@
     color: #6b7280;
     font-weight: 400;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
 }
 
 .login-form {
@@ -35,7 +34,7 @@
 }
 
 .login-input-container {
-    height: 50px;
+    height: 65px;
     margin-bottom: 20px;
     position: relative;
     width: 70%;
@@ -87,6 +86,8 @@
     transition: 0.3s ease-out;
 }
 
+.login-input-container:hover .passwordVisible-icon,
+.login-input-container:focus-within .passwordVisible-icon,
 .login-input-container:hover label,
 .login-input-container:focus-within label {
     color: #4f46e5 !important;
@@ -125,4 +126,22 @@
 .login-link:hover {
     opacity: 1;
     text-decoration: underline;
+}
+
+.passwordVisible-icon {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.login-input-container .login-error {
+    top: 0;
+    padding: 0;
+    margin: 5px 2px;
+    width: 100%;
+    color: red;
+    font-size: 0.8rem;
+    text-align: left;
 }

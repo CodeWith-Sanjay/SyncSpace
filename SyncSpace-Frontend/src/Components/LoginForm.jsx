@@ -55,7 +55,7 @@ const LoginForm = () => {
 
             if(res.success) {
                 console.log('Logged in successfully');
-                navigate('/dashboard')
+                navigate('/create-team')
             } else if (res.message.toLowerCase().trim().includes('user')) {
                 setErrors({email: 'User not found'});
             } else if (res.message.toLowerCase().trim().includes('password')) {

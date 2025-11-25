@@ -7,6 +7,8 @@ import LoginRegisterLayout from './pages/LoginRegisterLayout.jsx';
 import DashboardLayout from './pages/DashboardLayout.jsx';
 import LoginForm from './Components/LoginForm.jsx';
 import Dashboard from './Components/Dashboard.jsx';
+import WorkspaceForm from './Components/WorkspaceForm.jsx';
+import TeamForm from './Components/TeamForm.jsx';
 // import Sidebar from './Components/Sidebar.jsx';
 // import Topbar from './Components/Topbar.jsx';
 
@@ -22,7 +24,8 @@ function App() {
           </Route>
 
           <Route element={<DashboardLayout />}>
-            <Route element={<Dashboard />} path='/dashboard'/>
+            <Route element={<WorkspaceForm />} path='/create-workspace'/>
+            <Route element={<TeamForm />} path='/create-team'/>
           </Route>
         </Routes>
       </BrowserRouter>

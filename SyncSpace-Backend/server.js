@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import { connectDB } from './config/db.js';
 
 import authRoutes from './routes/authRoutes.js';
+import teamRoutes from './routes/teamRoutes.js';
+import workspaceRoutes from './routes/workspaceRoutes.js';
 
 dotenv.config();
 
@@ -20,6 +22,8 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use('/auth', authRoutes);
+app.use('/team', teamRoutes);
+app.use('/workspace', workspaceRoutes);
 
 connectDB().then(
     app.listen(port, () => {

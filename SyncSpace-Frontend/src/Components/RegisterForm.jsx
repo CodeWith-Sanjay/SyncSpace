@@ -9,7 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import '../styles/register.css';
-import Loader from './Loader/Loader';
+import Loader from './Loader/Loader.jsx';
 import { registerUser } from '../services/authServices.js';
 
 const RegisterForm = () => {
@@ -80,7 +80,7 @@ const RegisterForm = () => {
             if(res.success) {
                 setLoading(false)
                 console.log('Registered successfully');
-                navigate('/dashboard')
+                navigate('/create-team')
             } else if (res.message && res.message.toLowerCase().trim().includes('email')) {
                 setErrors({email: 'Email already registered'});
             } else {

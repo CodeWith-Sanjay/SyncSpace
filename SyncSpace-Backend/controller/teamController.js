@@ -3,7 +3,7 @@ import { Team } from "../model/Team.js";
 export const createTeam = async (req, res) => {
     try {
         const {teamName, description} = req.body;
-        const id = req.userId
+        const id = req.user.userId
 
         const name = teamName.trim();
 
@@ -37,6 +37,33 @@ export const createTeam = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Error creating a team',
+            error: error.message
+        });
+    }
+}
+
+export const getTeamById = async (req, res) => {
+    try {
+        const teamId = req.params.id
+
+        const team = await Team.findById(teamId);
+
+        if(!team) {
+            return res.status(404).json({
+                success: false,
+                message: 'There is not any team here',
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Team gets successfully',
+            data: team
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Getting team by id failed',
             error: error.message
         });
     }

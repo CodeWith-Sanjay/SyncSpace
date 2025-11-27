@@ -9,6 +9,8 @@ import LoginForm from './Components/LoginForm.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import WorkspaceForm from './Components/WorkspaceForm.jsx';
 import TeamForm from './Components/TeamForm.jsx';
+import ProtectedRoute from './Components/ProtectedRoute.jsx';
+import TeamDashboard from './Components/TeamDashboard.jsx';
 // import Sidebar from './Components/Sidebar.jsx';
 // import Topbar from './Components/Topbar.jsx';
 
@@ -24,8 +26,9 @@ function App() {
           </Route>
 
           <Route element={<DashboardLayout />}>
-            <Route element={<WorkspaceForm />} path='/create-workspace'/>
-            <Route element={<TeamForm />} path='/create-team'/>
+            <Route element={<ProtectedRoute><WorkspaceForm /></ProtectedRoute>} path='/create-workspace'/>
+            <Route element={<ProtectedRoute><TeamForm /></ProtectedRoute>} path='/create-team'/>
+            <Route element={<ProtectedRoute><TeamDashboard /></ProtectedRoute>} path='/team/:id'/>
           </Route>
         </Routes>
       </BrowserRouter>

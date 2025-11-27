@@ -10,6 +10,10 @@ authRoutes.post(
     profilePicUpload.single('profilePic'), 
     registerUser);
 authRoutes.post('/login', loginUser);
-authRoutes.get('/logout', accessTokenVerification, logoutUser);
+authRoutes.get('/logout', logoutUser);
+
+authRoutes.get('/check', accessTokenVerification, (req, res) => {
+    return res.status(200).json({message: 'Authenticated', user: req.user})
+});
 
 export default authRoutes

@@ -26,6 +26,7 @@ export const refreshTokenVerification = async (req, res) => {
             httpOnly: true,
             sameSite: 'lax',
             secure: false,
+            path: '/',
             maxAge: 1 * 60 * 60 * 1000
         });
 
@@ -50,13 +51,15 @@ export const accessTokenVerification = async (req, res, next) => {
             }
         }
 
-        const decoded = verifyAccessToken(accessToken);
+        const decoded = await verifyAccessToken(accessToken);
 
         if(!decoded || !decoded.userId) {
             throw new Error('Invalid token payload');
         }
         
-        req.userId = decoded.userId
+        req.user = {
+            userId: decoded.userId
+        }
 
         return next();
 
@@ -71,13 +74,19 @@ export const accessTokenVerification = async (req, res, next) => {
                 })
             }
 
-            const decoded = verifyAccessToken(newAccessToken);
-            req.userId = decoded.userId
+            const decoded = await verifyAccessToken(newAccessToken);
+            req.user = {
+                userId: decoded.userId
+            }
 
             return next();
         }
 
         console.log('Access token verification failed: ', error.message);
-        return res.status(401).json({message: 'Invalid access token'});
+        return res.status(401).json({
+            valid: false,
+            message: 'Invalid access token',
+            error: error.message
+        });
     }
 }

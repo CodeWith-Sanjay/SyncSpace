@@ -80,7 +80,7 @@ const RegisterForm = () => {
             if(res.success) {
                 setLoading(false)
                 console.log('Registered successfully');
-                navigate('/create-team')
+                navigate('/teams')
             } else if (res.message && res.message.toLowerCase().trim().includes('email')) {
                 setErrors({email: 'Email already registered'});
             } else {

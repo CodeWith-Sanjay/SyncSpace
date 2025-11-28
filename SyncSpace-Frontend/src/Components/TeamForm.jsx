@@ -52,7 +52,7 @@ const TeamForm = () => {
             const res = await createTeam(teamData);
             if(res.success) {
                 alert('Team created successfully');
-                navigate('/team/:id');
+                navigate(`/teams`);
             } else if (res.message.toLowerCase().trim().includes('name')) {
                 setErrors({teamName: res.message});
             } else if (res.message.toLowerCase().trim().includes('different')) {

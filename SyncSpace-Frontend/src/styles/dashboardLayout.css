@@ -6,7 +6,7 @@
     font-weight: 400;
     font-style: normal;
 
-    min-height: 150vh;
+    min-height: auto;
     width: 100%;
     /* position: relative; */
 
@@ -18,21 +18,21 @@
 
     display: flex;
     justify-content: flex-start;
+    gap: 10px;
     /* align-items: center; */
 }
 
 .dashboard-main {
     flex: 1;
     margin-left: 300px;
-    /* transform: translateX(0); */
-    display: flex;
-    flex-direction: column;
+    display: block;
     transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
     .dashboard-main {
         margin-left: 0;
+        /* margin: 10px; */
         transition: all 0.3s ease;
     }
 }

@@ -32,7 +32,7 @@ const Sidebar = ({isOpen}) => {
             className={active === 'teams' ? 'sidebar-list active' : 'sidebar-list'} 
             onClick= {() => {
               setActive('teams')
-              navigate('create-team')
+              navigate('teams')
             }}
             ><GroupsIcon 
             className={active === 'teams' ? 'sidebar-icon active' : 'sidebar-icon'} 

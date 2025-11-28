@@ -1,39 +1,60 @@
-import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { getTeamById } from '../services/teamServices.js'
+import '../styles/teamDashboard.css';
 import Loader from './Loader/Loader.jsx';
+import TeamCard from './TeamCard.jsx';
+import TeamForm from './TeamForm.jsx';
+import { getAllTeams } from '../services/teamServices.js';
 
 const TeamDashboard = () => {
-
-    const {id} = useParams();
-    const [teamData, setTeamData] = useState(null);
+    const navigate = useNavigate();
+    const [teams, setTeams] = useState(null);
 
     useEffect(() => {
-        const fetchTeam = async () => {
+        const fetchTeams = async () => {
             try {
-                const res = await getTeamById(id);
-                setTeamData(res.data);
+                const res = await getAllTeams();
+                const data = res.data ?? res;
+                setTeams(Array.isArray(data) ? data : (data.teams || []));
             } catch (error) {
-                console.log('Error getting team by id: ', error.message);
+                console.log('Error loading teams: ', error.message);
+                setTeams([]);
             }
         }
 
-        fetchTeam();
-    }, [id]);
+        fetchTeams();
+    }, []);
 
-    if(!teamData) return <Loader style={{height: '30px', width: '30px', border: '3px solid black', borderTopColor: 'black' }}/>
-
-  return (
-    <div>
-            <div>
-                <h1>{teamData.teamName}</h1>
-                <h1>{teamData.description}</h1>
-                <h1>{teamData.createAt}</h1>
-                <h1>{teamData.teamLead}</h1>
+    if(teams === null) {
+        return (
+            <div style={{height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Loader />
             </div>
-    </div>
-  )
+        )
+    }
+
+    return (
+        <div className='teamDashboard-container'>
+            {teams.length > 0 ? (
+                <div>
+                    <div style={{display: 'grid', gridTemplateColumns: '8fr 1fr'}}>
+                    <h2 className='teamDashboard-heading'>Your Teams</h2>
+                    <button className='team-dashboard-button' onClick={() => navigate('/create-team')}>Create Team</button>
+                    </div>
+                    <div className='team-dashboard-teams'>
+                        {teams.map((team) => (
+                            <TeamCard key={team._id} team={team}/>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div>
+                    <TeamForm />
+                </div>
+            )}
+        </div>
+    )
 }
 
 export default TeamDashboard

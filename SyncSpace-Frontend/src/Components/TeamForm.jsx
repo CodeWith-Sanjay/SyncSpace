@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -9,6 +10,8 @@ import Loader from './Loader/Loader.jsx';
 import '../styles/team.css';
 
 const TeamForm = () => {
+
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false)
@@ -49,6 +52,7 @@ const TeamForm = () => {
             const res = await createTeam(teamData);
             if(res.success) {
                 alert('Team created successfully');
+                navigate(`/teams`);
             } else if (res.message.toLowerCase().trim().includes('name')) {
                 setErrors({teamName: res.message});
             } else if (res.message.toLowerCase().trim().includes('different')) {
@@ -77,7 +81,7 @@ const TeamForm = () => {
                 name='teamName' 
                 placeholder='Enter team Name' 
                 onChange={handleTeamChange}
-                value={teamData.name} />
+                value={teamData.teamName} />
                 {errors.teamName && <p className='team-error'>{errors.teamName}</p>}
             </div>
 

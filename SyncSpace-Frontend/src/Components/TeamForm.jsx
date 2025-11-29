@@ -68,7 +68,7 @@ const TeamForm = () => {
     }
 
   return (
-    <div className='team-container'>
+    <div className='team-container' style={{margin: '20px'}}>
         <h1>Create team here!</h1> <hr></hr>
         <h3>You are not part of any team yet</h3>
 

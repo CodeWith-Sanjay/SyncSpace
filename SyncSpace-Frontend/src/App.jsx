@@ -12,6 +12,9 @@ import TeamForm from './Components/TeamForm.jsx';
 import ProtectedRoute from './Components/ProtectedRoute.jsx';
 import TeamDashboard from './Components/TeamDashboard.jsx';
 import SingleTeamDashboard from './Components/SingleTeamDashboard.jsx';
+import EditTeam from './Components/EditTeam.jsx';
+import AddTeamMember from './Components/AddTeamMember.jsx';
+import MembersSection from './Components/MembersSection.jsx';
 // import Sidebar from './Components/Sidebar.jsx';
 // import Topbar from './Components/Topbar.jsx';
 
@@ -31,6 +34,9 @@ function App() {
             <Route path='/team/:id'element={<ProtectedRoute><SingleTeamDashboard /></ProtectedRoute>}/>
             <Route path='/create-workspace' element={<ProtectedRoute><WorkspaceForm /></ProtectedRoute>}/>
             <Route path='/create-team' element={<ProtectedRoute><TeamForm /></ProtectedRoute>}/>
+            <Route path='/team/edit/:id' element={<ProtectedRoute><EditTeam /></ProtectedRoute>}/>
+            <Route path='/team/:teamId/addMember' element={<ProtectedRoute><AddTeamMember /></ProtectedRoute>}/>
+            {/* <Route path='/team/:id' element={<ProtectedRoute><MembersSection /></ProtectedRoute>}/> */}
           </Route>
         </Routes>
       </BrowserRouter>

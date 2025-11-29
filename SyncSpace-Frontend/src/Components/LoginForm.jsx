@@ -38,7 +38,7 @@ const LoginForm = () => {
         const validateErrors = {}
 
         if(!loginData.email) {
-            validateErrors.email = 'Name is required'
+            validateErrors.email = 'Email is required'
         }
 
         if(!loginData.password) {

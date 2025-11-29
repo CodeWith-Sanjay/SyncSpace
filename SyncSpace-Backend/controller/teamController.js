@@ -42,6 +42,53 @@ export const createTeam = async (req, res) => {
     }
 }
 
+export const editTeam = async (req, res) => {
+    try {
+        const {id} = req.params
+        const {teamName, description} = req.body;
+
+        const team = await Team.findByIdAndUpdate(id, {teamName, description}, {new: true});
+        if(!team) {
+            return res.status(404).json({
+                success: false,
+                message: 'Team not found'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Team updated successfully',
+            data: team
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Editing team failed',
+            error: error.message
+        });
+    }
+}
+
+export const deleteTeam = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const team = await Team.findByIdAndDelete(id);
+        
+        return res.status(200).json({
+            success: true,
+            message: 'Team deleted successfully',
+            data: team
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error deleting team',
+            error: error.message
+        });
+    }
+}
+
 export const getAllTeamsUser = async (req, res) => {
     try {
         const id = req.user.userId
